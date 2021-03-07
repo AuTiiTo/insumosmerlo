@@ -1,0 +1,67 @@
+<div class="container mt-5">
+    <form [formGroup]="formularioCliente" action="">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Nombre</label>
+                    <input type="text" class="form-control" formControlName="nombre" placeholder="nombre del cliente..">
+                    <div *ngIf="formularioCliente.controls['nombre'].invalid && formularioCliente.controls['nombre'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['nombre'].errors.required">
+                            El nombre es requerido
+                        </span>
+                    </div>
+               </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Apellido</label>
+                    <input type="text" class="form-control" formControlName="apellido" placeholder="apellido del cliente..">
+                    <div *ngIf="formularioCliente.controls['apellido'].invalid && formularioCliente.controls['apellido'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['apellido'].errors.required">
+                            El apellido es requerido
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Correo electrónico</label>
+                    <input type="email" class="form-control" formControlName="email" placeholder="correo del cliente..">
+                    <div *ngIf="formularioCliente.controls['email'].invalid && formularioCliente.controls['email'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioCliente.controls['email'].errors.email">
+                            El correo electrónico es invalido
+                        </span>
+                        <span *ngIf="formularioCliente.controls['email'].errors.required">
+                            El correo electrónico es requerido
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Teléfono</label>
+                    <input type="tel" class="form-control" formControlName="telefono" placeholder="telefono del cliente..">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="">Imagen</label>
+                    <input type="file" (change)="subirImagen($event)" class="form-control-file" placeholder="imagen del cliente..">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <progressbar [value]="porcentajeSubida" type="warning" [striped]="true">{{ porcentajeSubida }}%</progressbar>
+            </div>
+        </div>
+    </form>
+    <div padding>
+        <button class="btn btn-primary" [disabled]="formularioCliente.invalid" (click)="agregar()" *ngIf=!isEditable>Agregar</button>
+        <button class="btn btn-primary" [disabled]="formularioCliente.invalid" (click)="editar()" *ngIf=isEditable>Editar</button>
+    </div>
+</div>

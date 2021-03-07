@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "insumos-merlo": {
+      "hosting": {
+        "insumosmerlo": [
+          "insumos-merlo"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "insumos-merlo"
+  }
+}

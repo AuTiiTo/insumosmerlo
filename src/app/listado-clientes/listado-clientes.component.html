@@ -1,0 +1,25 @@
+<div class="container mt-4">
+    <h1> Listado de Clientes</h1>
+    <form [formGroup]="searchForm">
+        <div class="form-group">
+            <!-- <label for="clientSearch">Email address</label> -->
+            <input type="text" class="form-control" formControlName="search" id="clientSearch" aria-describedby="emailHelp" placeholder="Buscar cliente..">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let cliente of clientes">
+            <div class="card">
+                <img class="card-img-top image-client" src="{{cliente.urlImage}}"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cliente.nombre }} {{ cliente.apellido }}</h5>
+                    <p class="card-text">e-mail: {{cliente.email}}</p>
+                    <p class="card-text">phone: {{cliente.telefono}}</p>
+                    <a href="#" class="card-link">Mas info</a>
+                    <a [routerLink]="['/agregar-cliente', cliente.id]" class="card-link text-warning">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

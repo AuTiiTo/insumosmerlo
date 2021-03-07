@@ -1,0 +1,23 @@
+<div class="container mt-4">
+    <h1> Stock de Productos</h1>
+    <form [formGroup]="searchForm">
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="search" id="productSearch" aria-describedby="emailHelp" placeholder="Buscar producto..">
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let producto of productos">
+            <div class="card">
+                <img class="card-img-top image-product" src="{{producto.urlImage}}"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">{{producto.descripcion}}</p>
+                    <p class="card-text">precio: {{producto.precio}}</p>
+                    <p class="card-text">stock: {{producto.stock}}</p>
+                    <a href="#" class="card-link">Mas info</a>
+                    <a [routerLink]="['/agregar-producto', producto.id]" class="card-link text-warning">Editar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

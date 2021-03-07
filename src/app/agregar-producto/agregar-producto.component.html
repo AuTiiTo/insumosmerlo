@@ -1,0 +1,69 @@
+<div class="container mt-5">
+    <form [formGroup]="formularioProducto" action="">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Descripción</label>
+                    <input type="text" class="form-control" formControlName="descripcion" placeholder="describí el producto..">
+                    <div *ngIf="formularioProducto.controls['descripcion'].invalid && formularioProducto.controls['descripcion'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioProducto.controls['descripcion'].errors.required">
+                            Por favor agregale una descripción al producto.
+                        </span>
+                    </div>
+               </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Precio</label>
+                    <input type="text" class="form-control" formControlName="precio" placeholder="precio sugerido..">
+                    <div *ngIf="formularioProducto.controls['precio'].invalid && formularioProducto.controls['precio'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioProducto.controls['precio'].errors.required">
+                            El precio es requerido
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Costo</label>
+                    <input type="number" class="form-control" formControlName="costo" placeholder="costo del producto..">
+                    <div *ngIf="formularioProducto.controls['costo'].invalid && formularioProducto.controls['costo'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioProducto.controls['costo'].errors.required">
+                            El costo es requerido
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="">Stock</label>
+                    <input type="number" class="form-control" formControlName="stock" placeholder="stock del producto..">
+                    <div *ngIf="formularioProducto.controls['stock'].invalid && formularioProducto.controls['stock'].dirty" class="alert alert-danger" role="alert">
+                        <span *ngIf="formularioProducto.controls['stock'].errors.required">
+                            El stock es requerido
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="">Imagen</label>
+                    <input type="file" (change)="subirImagen($event)" class="form-control-file" placeholder="imagen del producto..">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <progressbar [value]="porcentajeSubida" type="warning" [striped]="true">{{ porcentajeSubida }}%</progressbar>
+            </div>
+        </div>
+    </form>
+    <div padding>
+        <button class="btn btn-primary" [disabled]="formularioProducto.invalid" (click)="agregar()" *ngIf=!isEditable>Agregar</button>
+        <button class="btn btn-primary" [disabled]="formularioProducto.invalid" (click)="editar()" *ngIf=isEditable>Editar</button>
+    </div>
+</div>

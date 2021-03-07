@@ -1,0 +1,34 @@
+<div class="text-center login-header"> 
+    <img src="assets/imgs/logo_black.png" alt="" class="logo">
+</div>
+<div class="container">
+    <h3 class="text-center">Bienvenido, por favor ingrese sus datos de acceso</h3>
+    <form [formGroup]="fbLogin">
+        <div class="form-group">
+            <label class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" formControlName="email" placeholder="Ingresa tu correo">
+            <div *ngIf="fbLogin.controls['email'].invalid && fbLogin.controls['email'].dirty" class="alert alert-danger" role="alert">
+                <span *ngIf="fbLogin.controls['email'].errors.email">
+                    El correo electrónico es invalido
+                </span>
+                <span *ngIf="fbLogin.controls['email'].errors.required">
+                    El correo electrónico es requerido
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Contraseña</label>
+            <input type="password" class="form-control" formControlName="password" placeholder="Ingresa tu clave">
+            <div *ngIf="fbLogin.controls['password'].invalid && fbLogin.controls['password'].dirty" class="alert alert-danger" role="alert">
+                <span *ngIf="fbLogin.controls['password'].errors.required">
+                    La contraseña es requerida
+                </span>
+            </div>
+        </div>
+         <button type="submit" [disabled]="!fbLogin.valid" (click)=tryLogin() class="btn btn-primary">Ingresar</button>
+    </form>
+    <div *ngIf="!datosCorrectos" class="alert alert-danger" role="alert" padding>
+        {{ loginText }}
+    </div>
+    <ngx-spinner></ngx-spinner>
+</div>
